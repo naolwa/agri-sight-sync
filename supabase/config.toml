@@ -1,1 +1,7 @@
 project_id = "gqesbybjofbctznwysjq"
+
+[functions]
+enabled = true
+
+[functions.analyze-soil]
+verify_jwt = true

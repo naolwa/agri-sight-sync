@@ -14,7 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      farmer_profiles: {
+        Row: {
+          created_at: string
+          crops: string[] | null
+          farmer_type: string
+          harvest_schedule: Json | null
+          id: string
+          livestock_count: number | null
+          updated_at: string
+          user_id: string
+          water_usage_per_day: number | null
+        }
+        Insert: {
+          created_at?: string
+          crops?: string[] | null
+          farmer_type: string
+          harvest_schedule?: Json | null
+          id?: string
+          livestock_count?: number | null
+          updated_at?: string
+          user_id: string
+          water_usage_per_day?: number | null
+        }
+        Update: {
+          created_at?: string
+          crops?: string[] | null
+          farmer_type?: string
+          harvest_schedule?: Json | null
+          id?: string
+          livestock_count?: number | null
+          updated_at?: string
+          user_id?: string
+          water_usage_per_day?: number | null
+        }
+        Relationships: []
+      }
+      soil_analyses: {
+        Row: {
+          created_at: string
+          health_score: number | null
+          id: string
+          image_url: string
+          moisture_level: number | null
+          ndvi_value: number | null
+          nitrogen_level: number | null
+          ph_level: number | null
+          recommendations: string[] | null
+          rotation_needed: boolean | null
+          should_rest: boolean | null
+          suggested_crop: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          health_score?: number | null
+          id?: string
+          image_url: string
+          moisture_level?: number | null
+          ndvi_value?: number | null
+          nitrogen_level?: number | null
+          ph_level?: number | null
+          recommendations?: string[] | null
+          rotation_needed?: boolean | null
+          should_rest?: boolean | null
+          suggested_crop?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          health_score?: number | null
+          id?: string
+          image_url?: string
+          moisture_level?: number | null
+          ndvi_value?: number | null
+          nitrogen_level?: number | null
+          ph_level?: number | null
+          recommendations?: string[] | null
+          rotation_needed?: boolean | null
+          should_rest?: boolean | null
+          suggested_crop?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
