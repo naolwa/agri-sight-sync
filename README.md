@@ -90,7 +90,11 @@ SDG 15: Life on Land
 🤝 Contributors
 
 Naomie, Timonthy, Rebbrown and Joella — Team
-
+Team email-NaomieLwambululo@gmail.com 
+timkaranjaxo@gmail.com
+rebbrownlikalani87@gmail.com
+joelinaquarshie77@gmail.com
 AgriAI Team — AI & GIS Integration
 
+Ai model-https://preview--agri-sight-sync.lovable.app/
 Lovable Cloud — Cloud Data Infrastructure
