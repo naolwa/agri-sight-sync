@@ -1,73 +1,96 @@
-# Welcome to your Lovable project
+🌱 AgriAI: Intelligent Farming
+AI-Powered Agricultural Intelligence for Sustainable Farming
 
-## Project info
+AgriAI is an intelligent, data-driven platform designed to help farmers monitor soil health, plan crop rotations, and make smarter agricultural decisions using AI, IoT, and GIS technologies.
 
-**URL**: https://lovable.dev/projects/826083a7-6cdb-4ec4-9a42-563fc43d238f
+🚜 Problem Statement
 
-## How can I edit this code?
+Farmers face unpredictable soil health issues that lead to major crop losses.
+Lack of reliable soil and environmental data prevents effective decision-making, especially in regions with limited access to precision farming tools.
 
-There are several ways of editing your application.
+🌾 Our Solution — AgriAI
 
-**Use Lovable**
+AgriAI empowers farmers with real-time soil intelligence, AI-driven crop planning, and geospatial analysis to improve yield and promote sustainable practices.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/826083a7-6cdb-4ec4-9a42-563fc43d238f) and start prompting.
+Key Features
+🧠 AI-Powered Soil Health Analysis
 
-Changes made via Lovable will be committed automatically to this repo.
+Analyzes soil moisture, pH, and nutrient levels using IoT sensors and uploaded soil images.
 
-**Use your preferred IDE**
+Provides personalized fertilization and irrigation recommendations.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Uses an Artificial Neural Network (ANN) to detect imbalances and predict optimal soil treatment.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🌍 GIS Integration
 
-Follow these steps:
+ArcGIS REST API + Sentinel Hub + OpenWeather API integration.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Visualize:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Soil fertility, pH, and moisture maps
 
-# Step 3: Install the necessary dependencies.
-npm i
+NDVI vegetation health
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Land use and cover classification
 
-**Edit a file directly in GitHub**
+Temperature and rainfall patterns
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+🧭 Interactive Map Viewer
 
-**Use GitHub Codespaces**
+Real-time soil and vegetation overlays
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+NDVI visualization for crop stress detection
 
-## What technologies are used for this project?
+Layer controls for soil moisture, rainfall, and land cover
 
-This project is built with:
+Export maps and visual reports for analysis or sharing
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+🌿 Crop Rotation Planner
 
-## How can I deploy this project?
+AI-powered rotation recommendations using ANN + rule-based logic
 
-Simply open [Lovable](https://lovable.dev/projects/826083a7-6cdb-4ec4-9a42-563fc43d238f) and click on Share -> Publish.
+Suggests the next crop or rest period based on:
 
-## Can I connect a custom domain to my Lovable project?
+Soil nutrient balance (N, P, K)
 
-Yes, you can!
+Weather and disease risk
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Current and historical crop performance
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Stores recommendations in the cloud and displays them on a live dashboard
+
+📊 Interactive Dashboard
+
+Visualizes:
+
+Soil nutrient trends
+
+Crop rotation sequences
+
+Land use and NDVI health charts
+
+Built with Streamlit and Folium for real-time, interactive analytics
+🛰️ Data Sources
+
+ArcGIS REST API — Soil and land cover data
+
+Sentinel Hub — NDVI and multispectral imagery
+
+OpenWeather API — Temperature, rainfall, and climate data
+
+Lovable Cloud — Real-time storage and analytics backend
+
+🌍 Social Impact
+
+SDG 2: Zero Hunger
+→ Improves crop yields and boosts local food security.
+
+SDG 15: Life on Land
+→ Encourages sustainable land use and soil conservation through crop rotation and monitoring.
+🤝 Contributors
+
+Naomie, Timonthy, Rebbrown and Joella — Team
+
+AgriAI Team — AI & GIS Integration
+
+Lovable Cloud — Cloud Data Infrastructure
