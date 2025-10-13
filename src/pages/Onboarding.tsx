@@ -13,6 +13,8 @@ import { Sprout, Beef, Warehouse } from "lucide-react";
 const Onboarding = () => {
   const [step, setStep] = useState(1);
   const [farmerType, setFarmerType] = useState<"crop" | "livestock" | "mixed">("crop");
+  const [location, setLocation] = useState("");
+  const [currentCrop, setCurrentCrop] = useState("");
   const [crops, setCrops] = useState("");
   const [harvestMonth, setHarvestMonth] = useState("");
   const [waterUsage, setWaterUsage] = useState("");
@@ -43,6 +45,8 @@ const Onboarding = () => {
       const { error } = await supabase.from("farmer_profiles").insert({
         user_id: user.id,
         farmer_type: farmerType,
+        location: location || null,
+        current_crop: currentCrop || null,
         crops: cropsArray.length > 0 ? cropsArray : null,
         harvest_schedule: harvestMonth ? { month: harvestMonth } : null,
         water_usage_per_day: waterUsage ? parseFloat(waterUsage) : null,
@@ -112,10 +116,33 @@ const Onboarding = () => {
 
           {step === 2 && (
             <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="location">Farm Location</Label>
+                <Input
+                  id="location"
+                  placeholder="Village name, coordinates, or farm name"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  required
+                />
+                <p className="text-xs text-muted-foreground">
+                  e.g., "Limpopo Province" or "-23.8963, 29.4486"
+                </p>
+              </div>
+
               {(farmerType === "crop" || farmerType === "mixed") && (
                 <>
                   <div className="space-y-2">
-                    <Label htmlFor="crops">What crops do you farm?</Label>
+                    <Label htmlFor="currentCrop">Current Crop Planted</Label>
+                    <Input
+                      id="currentCrop"
+                      placeholder="e.g., Potatoes, Onions, Maize"
+                      value={currentCrop}
+                      onChange={(e) => setCurrentCrop(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="crops">All crops you farm</Label>
                     <Textarea
                       id="crops"
                       placeholder="e.g., Maize, Wheat, Potatoes (separate with commas)"

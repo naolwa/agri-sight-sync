@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut, Upload } from "lucide-react";
+import { LogOut, Upload, MapPin } from "lucide-react";
 import SoilDashboard from "@/components/SoilDashboard";
 import CropRotation from "@/components/CropRotation";
 import PastureManagement from "@/components/PastureManagement";
@@ -107,6 +107,19 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                {profile.location && (
+                  <div className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 mt-0.5 text-primary" />
+                    <div>
+                      <span className="font-semibold">Location:</span> {profile.location}
+                    </div>
+                  </div>
+                )}
+                {profile.current_crop && (
+                  <div>
+                    <span className="font-semibold">Current Crop:</span> {profile.current_crop}
+                  </div>
+                )}
                 {profile.crops && profile.crops.length > 0 && (
                   <div>
                     <span className="font-semibold">Crops:</span> {profile.crops.join(", ")}

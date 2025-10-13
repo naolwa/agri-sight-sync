@@ -18,10 +18,12 @@ export type Database = {
         Row: {
           created_at: string
           crops: string[] | null
+          current_crop: string | null
           farmer_type: string
           harvest_schedule: Json | null
           id: string
           livestock_count: number | null
+          location: string | null
           updated_at: string
           user_id: string
           water_usage_per_day: number | null
@@ -29,10 +31,12 @@ export type Database = {
         Insert: {
           created_at?: string
           crops?: string[] | null
+          current_crop?: string | null
           farmer_type: string
           harvest_schedule?: Json | null
           id?: string
           livestock_count?: number | null
+          location?: string | null
           updated_at?: string
           user_id: string
           water_usage_per_day?: number | null
@@ -40,10 +44,12 @@ export type Database = {
         Update: {
           created_at?: string
           crops?: string[] | null
+          current_crop?: string | null
           farmer_type?: string
           harvest_schedule?: Json | null
           id?: string
           livestock_count?: number | null
+          location?: string | null
           updated_at?: string
           user_id?: string
           water_usage_per_day?: number | null
@@ -56,6 +62,8 @@ export type Database = {
           health_score: number | null
           id: string
           image_url: string
+          latitude: number | null
+          longitude: number | null
           moisture_level: number | null
           ndvi_value: number | null
           nitrogen_level: number | null
@@ -71,6 +79,8 @@ export type Database = {
           health_score?: number | null
           id?: string
           image_url: string
+          latitude?: number | null
+          longitude?: number | null
           moisture_level?: number | null
           ndvi_value?: number | null
           nitrogen_level?: number | null
@@ -86,6 +96,8 @@ export type Database = {
           health_score?: number | null
           id?: string
           image_url?: string
+          latitude?: number | null
+          longitude?: number | null
           moisture_level?: number | null
           ndvi_value?: number | null
           nitrogen_level?: number | null
