@@ -94,6 +94,7 @@ Team email-NaomieLwambululo@gmail.com
 timkaranjaxo@gmail.com
 rebbrownlikalani87@gmail.com
 joelinaquarshie77@gmail.com
+
 AgriAI Team — AI & GIS Integration
 
 Ai model-https://preview--agri-sight-sync.lovable.app/
