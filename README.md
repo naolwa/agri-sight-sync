@@ -99,3 +99,4 @@ AgriAI Team — AI & GIS Integration
 
 Ai model-https://preview--agri-sight-sync.lovable.app/
 Lovable Cloud — Cloud Data Infrastructure
+pitch deck-://www.canva.com/design/DAG1m3RE0oI/n4LlyV6Ef9Im-GawPo0O5w/view?utm_content=DAG1m3RE0oI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4c3c830dd3
