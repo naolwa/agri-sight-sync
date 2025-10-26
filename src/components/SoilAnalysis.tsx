@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Upload, Loader2, CheckCircle, AlertTriangle, Leaf, Droplets } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Upload, CheckCircle, AlertTriangle, Leaf, Droplets, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import LoadingSpinner from "./LoadingSpinner";
 
 interface SoilAnalysisProps {
   farmerType?: string;
@@ -16,6 +18,7 @@ const SoilAnalysis = ({ farmerType }: SoilAnalysisProps) => {
   const [analyzing, setAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<any>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +37,7 @@ const SoilAnalysis = ({ farmerType }: SoilAnalysisProps) => {
 
     setUploading(true);
     setAnalysis(null);
+    setError(null);
 
     try {
       // Convert file to base64
@@ -73,9 +77,11 @@ const SoilAnalysis = ({ farmerType }: SoilAnalysisProps) => {
       };
     } catch (error: any) {
       console.error("Error analyzing soil:", error);
+      const errorMessage = error.message || "Failed to analyze soil image. Please try again.";
+      setError(errorMessage);
       toast({
         title: "Error",
-        description: error.message || "Failed to analyze soil image",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -86,46 +92,56 @@ const SoilAnalysis = ({ farmerType }: SoilAnalysisProps) => {
 
   return (
     <div className="space-y-6">
+      {error && (
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+
       <Card>
         <CardHeader>
           <CardTitle>Upload Soil Image for Analysis</CardTitle>
           <CardDescription>
-            Upload a photo of your soil and get AI-powered analysis with personalized recommendations
+            Upload a clear photo of your soil sample and get AI-powered analysis with personalized recommendations
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-8 hover:border-primary transition-colors">
-            <Upload className="w-12 h-12 text-muted-foreground mb-4" />
-            <p className="text-sm text-muted-foreground mb-4">
-              Click to upload or drag and drop
-            </p>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileUpload}
-              className="hidden"
-              id="soil-upload"
-              disabled={uploading || analyzing}
-            />
-            <label htmlFor="soil-upload">
-              <Button disabled={uploading || analyzing} asChild>
-                <span>
-                  {uploading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Uploading...
-                    </>
-                  ) : analyzing ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Analyzing...
-                    </>
-                  ) : (
-                    "Select Image"
-                  )}
-                </span>
-              </Button>
-            </label>
+          <div 
+            className="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-8 hover:border-primary transition-colors"
+            role="region"
+            aria-label="Soil image upload area"
+          >
+            {analyzing ? (
+              <LoadingSpinner size="lg" text="Analyzing soil sample with AI..." />
+            ) : (
+              <>
+                <Upload className="w-12 h-12 text-muted-foreground mb-4" aria-hidden="true" />
+                <p className="text-sm text-muted-foreground mb-4">
+                  Click to upload or drag and drop
+                </p>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                  id="soil-upload"
+                  disabled={uploading || analyzing}
+                  aria-label="Upload soil image"
+                />
+                <label htmlFor="soil-upload">
+                  <Button disabled={uploading || analyzing} asChild>
+                    <span>
+                      {uploading ? (
+                        <LoadingSpinner size="sm" text="Uploading..." />
+                      ) : (
+                        "Select Image"
+                      )}
+                    </span>
+                  </Button>
+                </label>
+              </>
+            )}
           </div>
 
           {imageUrl && (

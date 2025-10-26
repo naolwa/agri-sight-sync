@@ -4,13 +4,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut, Upload, MapPin } from "lucide-react";
+import { LogOut, Upload, MapPin, BookOpen } from "lucide-react";
 import SoilDashboard from "@/components/SoilDashboard";
 import CropRotation from "@/components/CropRotation";
 import PastureManagement from "@/components/PastureManagement";
 import PlantIdentification from "@/components/PlantIdentification";
 import MapVisualization from "@/components/MapVisualization";
 import SoilAnalysis from "@/components/SoilAnalysis";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useToast } from "@/hooks/use-toast";
 
 const Dashboard = () => {
@@ -76,27 +77,41 @@ const Dashboard = () => {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-white">
+        <LoadingSpinner size="lg" text="Loading your dashboard..." />
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10" role="banner">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center flex-wrap gap-3">
           <h1 className="text-2xl font-bold text-primary">AgriTech AI Dashboard</h1>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">{user?.email}</span>
-            <Button variant="outline" size="sm" onClick={handleSignOut}>
-              <LogOut className="w-4 h-4 mr-2" />
+          <div className="flex items-center gap-3 flex-wrap">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => navigate('/methodology')}
+              className="gap-2"
+              aria-label="View methodology"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span className="hidden sm:inline">Methodology</span>
+            </Button>
+            <span className="text-sm text-muted-foreground hidden sm:inline">{user?.email}</span>
+            <Button variant="outline" size="sm" onClick={handleSignOut} aria-label="Sign out">
+              <LogOut className="w-4 h-4 mr-2" aria-hidden="true" />
               Sign Out
             </Button>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8" role="main">
         {profile && (
-          <Card className="mb-6">
+          <Card className="mb-6" role="region" aria-label="Farm profile information">
             <CardHeader>
               <CardTitle>Your Farm Profile</CardTitle>
               <CardDescription>

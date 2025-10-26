@@ -23,7 +23,8 @@ const Hero = () => {
           
           <p className="mb-8 text-lg text-primary-foreground/90 sm:text-xl">
             Monitor soil health, optimize crop rotation, and manage pastures with machine learning,
-            remote sensing, and intelligent data analysis. Supporting SDG 2 and SDG 15.
+            remote sensing, and intelligent data analysis. Real-time NDVI mapping, AI-powered crop 
+            recommendations, and predictive analytics. Supporting SDG 2 (Zero Hunger) and SDG 15 (Life on Land).
           </p>
           
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -31,17 +32,28 @@ const Hero = () => {
               size="lg" 
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-[var(--shadow-strong)]"
               onClick={() => navigate('/auth')}
+              aria-label="Get started with AgriAI"
             >
               Get Started
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </Button>
             <Button 
               size="lg" 
               variant="outline"
               className="border-primary-foreground/20 bg-white/10 text-primary-foreground hover:bg-white/20 backdrop-blur-sm"
               onClick={() => navigate('/dashboard')}
+              aria-label="View demo dashboard"
             >
-              View Dashboard
+              View Demo
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-primary-foreground/20 bg-white/10 text-primary-foreground hover:bg-white/20 backdrop-blur-sm"
+              onClick={() => navigate('/methodology')}
+              aria-label="Learn about our methodology"
+            >
+              How It Works
             </Button>
           </div>
 
