@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut, Upload, MapPin, BookOpen } from "lucide-react";
+import { LogOut, Upload, MapPin, BookOpen, Brain, Database } from "lucide-react";
 import SoilDashboard from "@/components/SoilDashboard";
 import CropRotation from "@/components/CropRotation";
 import PastureManagement from "@/components/PastureManagement";
@@ -12,11 +12,15 @@ import PlantIdentification from "@/components/PlantIdentification";
 import MapVisualization from "@/components/MapVisualization";
 import SoilAnalysis from "@/components/SoilAnalysis";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import NLPQueryPanel from "@/components/NLPQueryPanel";
+import DemoDataPanel from "@/components/DemoDataPanel";
+import RiskScoreVisual from "@/components/RiskScoreVisual";
 import { useToast } from "@/hooks/use-toast";
 
 const Dashboard = () => {
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
+  const [soilData, setSoilData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -65,6 +69,17 @@ const Dashboard = () => {
     }
 
     setProfile(data);
+
+    // Fetch latest soil analysis
+    const { data: soilAnalysis } = await supabase
+      .from("soil_analyses")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
+
+    if (soilAnalysis) setSoilData(soilAnalysis);
   };
 
   const handleSignOut = async () => {
@@ -156,7 +171,7 @@ const Dashboard = () => {
         )}
 
         <Tabs defaultValue="soil-analysis" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-8">
             <TabsTrigger value="soil-analysis">
               <Upload className="w-4 h-4 mr-2" />
               Soil Analysis
@@ -166,6 +181,14 @@ const Dashboard = () => {
             <TabsTrigger value="pasture">Pasture</TabsTrigger>
             <TabsTrigger value="plant-id">Plant ID</TabsTrigger>
             <TabsTrigger value="map">Map</TabsTrigger>
+            <TabsTrigger value="ai-query">
+              <Brain className="w-4 h-4 mr-2" />
+              AI Query
+            </TabsTrigger>
+            <TabsTrigger value="demo">
+              <Database className="w-4 h-4 mr-2" />
+              Demo
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="soil-analysis">
@@ -190,6 +213,32 @@ const Dashboard = () => {
 
           <TabsContent value="map">
             <MapVisualization />
+          </TabsContent>
+
+          <TabsContent value="ai-query">
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="lg:col-span-2">
+                <NLPQueryPanel
+                  soilData={soilData}
+                  cropData={{
+                    currentCrop: profile?.current_crop,
+                    location: profile?.location,
+                  }}
+                  weatherData={{
+                    temperature: 24,
+                    rainfall: 45,
+                    humidity: 65,
+                  }}
+                />
+              </div>
+              <div>
+                <RiskScoreVisual currentRisk={45} />
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="demo">
+            <DemoDataPanel />
           </TabsContent>
         </Tabs>
       </main>

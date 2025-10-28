@@ -22,9 +22,9 @@ const Hero = () => {
           </h1>
           
           <p className="mb-8 text-lg text-primary-foreground/90 sm:text-xl">
-            Monitor soil health, optimize crop rotation, and manage pastures with machine learning,
-            remote sensing, and intelligent data analysis. Real-time NDVI mapping, AI-powered crop 
-            recommendations, and predictive analytics. Supporting SDG 2 (Zero Hunger) and SDG 15 (Life on Land).
+            Ask questions in plain language and get AI-powered crop recommendations, risk assessments,
+            and soil insights. Powered by Lovable AI, real-time GIS data (ArcGIS, Sentinel Hub, OpenWeather),
+            and supervised machine learning for actionable farming intelligence.
           </p>
           
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
